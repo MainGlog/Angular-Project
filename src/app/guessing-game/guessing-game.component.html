@@ -1,0 +1,49 @@
+<h1 class="text-center">Guessing Game</h1>
+<p class="text-center" *ngIf="displayMessage">{{ displayMessage }}</p>
+<div class="row mb-3">
+  <div class="col">
+    <div class="d-flex">
+      <label class="form-label text-center" for="guess-input">Guess a number between 1 and {{ upperBound }} </label>
+    </div>
+    <div class="input-group d-flex mb-2">
+      <input class="form-control w-25" id="guess-input" type="number" min="0" max="200" [(ngModel)]="guessedNumber"/>
+      <button class="btn btn-primary" id="guess-btn" type="button" (click)="checkNumber()">Guess</button>
+    </div>
+    <div>
+      <p>Guesses Remaining: {{ guessesRemaining }}</p>
+    </div>
+  </div>
+  <!--/ Controls -->
+  <div class="col" id="controls">
+    <!--/ Upper Bound Selection -->
+    <label for="upper-bound">Select Upper Bound</label>
+    <input class="form-range controls" id="upper-bound" type="range"
+           min="10" [(ngModel)]="upperBound" (change)="resizeGuesses()">
+    <label for="guesses-remaining">Select Number of Guesses</label>
+    <!--/ Number of Guesses Selection -->
+    <div class="input-group">
+      <!-- TODO users can still enter non-number data types despite the type of this input being number???-->
+      <input class="form-control controls" id="guesses-remaining"
+             min="0" type="number" [(ngModel)]="guessesRemaining">
+      <button class="btn btn-primary controls" id="confirm-guesses-btn" type="button"
+              (click)="confirmNumberOfGuesses()">
+        Confirm
+      </button>
+    </div>
+  </div>
+</div>
+<div class="text-center h3" id="guesses">
+  <p>Guesses</p>
+  <div class="d-flex justify-content-evenly">
+    @for (guess of guesses; track $index)
+    {
+      {{ guess }}
+    }
+  </div>
+</div>
+<div class="row">
+  <button class="row btn btn-success align-content-center"
+          *ngIf="gameOver" (click)="initializeGame()">
+    Play Again
+  </button>
+</div>
