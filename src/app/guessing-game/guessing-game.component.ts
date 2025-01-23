@@ -21,6 +21,7 @@ export class GuessingGameComponent {
   guessesRemaining: number = 5;
   initialGuessAmount: number = 5;
   numberToGuess: number = 0;
+  controlsAreSet: boolean = false;
 
   ngOnInit()
   {
@@ -28,6 +29,7 @@ export class GuessingGameComponent {
   }
   initializeGame()
   {
+    this.controlsAreSet = false;
     this.displayMessage = '';
     this.gameOver = false;
     this.guesses = [];
@@ -67,6 +69,8 @@ export class GuessingGameComponent {
 
   confirmNumberOfGuesses()
   {
+    this.controlsAreSet = true;
+
     //* Store initial guesses to reset to after clicking play again
     let element: HTMLInputElement = document.getElementById('guesses-remaining') as HTMLInputElement;
     this.initialGuessAmount = parseInt(element.value);
@@ -90,11 +94,12 @@ export class GuessingGameComponent {
       .setAttribute('disabled', 'true');
   }
 
-  resizeGuesses(): void
+  resize(): void
   {
     let remaining = Math.round(this.upperBound / 20) - this.guesses.length;
     if (remaining < 0) this.guessesRemaining = 0;
     this.guessesRemaining = remaining;
 
+    this.generateNumber();
   }
 }

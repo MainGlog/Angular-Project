@@ -1,7 +1,9 @@
 <h1 class="text-center">Guessing Game</h1>
 <p class="text-center" *ngIf="displayMessage">{{ displayMessage }}</p>
 <div class="row mb-3">
-  <div class="col">
+  <!--/ Guessing Game -->
+  <div class="col-6 m-auto" *ngIf="controlsAreSet">
+    <!--/ Guess Box-->
     <div class="d-flex">
       <label class="form-label text-center" for="guess-input">Guess a number between 1 and {{ upperBound }} </label>
     </div>
@@ -9,16 +11,20 @@
       <input class="form-control w-25" id="guess-input" type="number" min="0" max="200" [(ngModel)]="guessedNumber"/>
       <button class="btn btn-primary" id="guess-btn" type="button" (click)="checkNumber()">Guess</button>
     </div>
+    <!--/ Guesses Remaining -->
     <div>
       <p>Guesses Remaining: {{ guessesRemaining }}</p>
     </div>
   </div>
   <!--/ Controls -->
-  <div class="col" id="controls">
+  <div class="col-6 m-auto" id="controls" *ngIf="!controlsAreSet">
     <!--/ Upper Bound Selection -->
-    <label for="upper-bound">Select Upper Bound</label>
+    <div class="d-flex justify-content-between">
+      <p>Select Upper Bound</p>
+      <p>{{upperBound}}</p>
+    </div>
     <input class="form-range controls" id="upper-bound" type="range"
-           min="10" [(ngModel)]="upperBound" (change)="resizeGuesses()">
+           min="10" [(ngModel)]="upperBound" (change)="resize()">
     <label for="guesses-remaining">Select Number of Guesses</label>
     <!--/ Number of Guesses Selection -->
     <div class="input-group">
