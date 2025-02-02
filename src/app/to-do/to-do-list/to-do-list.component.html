@@ -1,0 +1,58 @@
+<button class="btn btn-primary" id="add-task-btn"
+        data-bs-toggle="modal" data-bs-target="#task-add-modal">Add Task</button>
+
+<div class="mt-5 mx-auto" id="task-list">
+  @for (task of tasks; track $index)
+  {
+    <app-task
+      [id]="$index"
+      [title]="task.title"
+      [description]="task.description"
+      [time]="task.time"
+      (taskDeleted)="onTaskDeleted($event)"/>
+  }
+</div>
+<!--
+ / Add and delete tasks
+
+
+ -->
+
+<div class="modal fade" id="task-add-modal">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5">Add Task</h1>
+        <button class="btn-close" type="button" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <form id="new-task-form" (ngSubmit)="addTask($event)">
+          <div class="mb-3">
+            <label class="form-label" for="task-title">Task Title</label>
+            <input class="form-control" id="task-title"
+                   name="task-name" required/>
+          </div>
+          <div class="mb-3">
+            <label class="form-label" for="task-description">Task Description</label>
+            <input class="form-control" id="task-description"/>
+          </div>
+          <div class="mb-3">
+            <label class="form-label" for="task-time">Time</label>
+            <input class="form-control" id="task-time"
+              type="time"/>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary"
+                type="button" data-bs-dismiss="modal">
+          Close
+        </button>
+        <button class="btn btn-primary" type="submit"
+                form="new-task-form">
+          Add Task
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
