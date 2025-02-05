@@ -1,0 +1,19 @@
+<div class="container border border-info-subtle task">
+  <div class="d-flex justify-content-between">
+    <h1 class="mt-1">{{this.title}}</h1>
+    <h3 class="align-content-center">{{this.time}}</h3>
+  </div>
+  <div class="checkbox-container">
+    <input id="checkbox" type="checkbox">
+    <p id="description">{{this.description}}</p>
+    <button class="btns btn btn-info" id="edit-btn"
+            (click)="this.taskEdited.emit(this)">
+      <i class="bi bi-gear"></i>
+    </button>
+    <button class="btns btn btn-danger" id="delete-btn"
+            (click)="this.deleteTask.emit()">
+      <i class="bi bi-trash"></i>
+    </button>
+  </div>
+</div>
+

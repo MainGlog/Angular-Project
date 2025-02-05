@@ -2,49 +2,49 @@
   "hash": "bdb6ee16",
   "configHash": "3e24cfc9",
   "lockfileHash": "7b3f10c3",
-  "browserHash": "dedc3bf7",
+  "browserHash": "8968121f",
   "optimized": {
     "@angular/common": {
       "src": "../../../../../../node_modules/@angular/common/fesm2022/common.mjs",
       "file": "@angular_common.js",
-      "fileHash": "af68fe03",
+      "fileHash": "8cfbdf3c",
       "needsInterop": false
     },
     "@angular/core": {
       "src": "../../../../../../node_modules/@angular/core/fesm2022/core.mjs",
       "file": "@angular_core.js",
-      "fileHash": "75f45e80",
+      "fileHash": "57ad55e1",
       "needsInterop": false
     },
     "@angular/forms": {
       "src": "../../../../../../node_modules/@angular/forms/fesm2022/forms.mjs",
       "file": "@angular_forms.js",
-      "fileHash": "54c2cc38",
+      "fileHash": "7ea63140",
       "needsInterop": false
     },
     "@angular/platform-browser": {
       "src": "../../../../../../node_modules/@angular/platform-browser/fesm2022/platform-browser.mjs",
       "file": "@angular_platform-browser.js",
-      "fileHash": "15394d04",
+      "fileHash": "3526323b",
       "needsInterop": false
     },
     "@angular/router": {
       "src": "../../../../../../node_modules/@angular/router/fesm2022/router.mjs",
       "file": "@angular_router.js",
-      "fileHash": "e3fe220e",
+      "fileHash": "6f425919",
+      "needsInterop": false
+    },
+    "bootstrap": {
+      "src": "../../../../../../node_modules/bootstrap/dist/js/bootstrap.esm.js",
+      "file": "bootstrap.js",
+      "fileHash": "d2178c57",
       "needsInterop": false
     },
     "bootstrap/dist/js/bootstrap.bundle.min.js": {
       "src": "../../../../../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js",
       "file": "bootstrap_dist_js_bootstrap__bundle__min__js.js",
-      "fileHash": "342a2960",
+      "fileHash": "c99c65d3",
       "needsInterop": true
-    },
-    "bootstrap": {
-      "src": "../../../../../../node_modules/bootstrap/dist/js/bootstrap.esm.js",
-      "file": "bootstrap.js",
-      "fileHash": "84d6c8fe",
-      "needsInterop": false
     }
   },
   "chunks": {
