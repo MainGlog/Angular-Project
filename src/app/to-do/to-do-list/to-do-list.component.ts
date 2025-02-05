@@ -50,4 +50,9 @@ export class ToDoListComponent {
       return;
     }
   }
+
+  editTask(event: Event)
+  {
+
+  }
 }
