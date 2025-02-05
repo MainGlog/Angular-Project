@@ -14,45 +14,67 @@ import {FormsModule} from '@angular/forms';
 
 export class ToDoListComponent {
   tasks: TaskComponent[] = [];
-  onTaskEdited(task: TaskComponent, index: number)
+  mode: string = '';
+  onTaskEdited(task: TaskComponent)
   {
-    this.tasks.splice(index, 1, task);
+    this.mode = 'Edit';
+    document.getElementById('task-modal')!.removeAttribute('hide');
   }
   onTaskDeleted(index: number)
   {
     this.tasks.splice(index, 1);
   }
-  addTask(event: Event)
+  taskAction(event: Event)
   {
-    event.preventDefault();
+    const task = this.getTaskFromForm(event);
 
+    //* If the task was returned successfully, perform the specified action
+    if(task)
+    {
+      switch (this.mode) {
+        case 'Add':
+          this.addTask(event, task);
+          break;
+
+      }
+    }
+  }
+
+  getTaskFromForm(event: Event)
+  {
     const form = event.target as HTMLFormElement
 
-    let newTask = {};
+    let task = {};
     const title = (form.elements.namedItem('task-title') as HTMLInputElement).value;
     const description = (form.elements.namedItem('task-description') as HTMLInputElement).value;
     const time = (form.elements.namedItem('task-time') as HTMLInputElement).value;
 
     if(title)
     {
-      newTask = {
+      return {
         title: title,
         description: description,
         time: time
-      }
-      this.tasks.push(newTask as TaskComponent);
-      form.reset();
-      return;
+      } as TaskComponent
     }
     else
     {
       alert('Please enter a title for the task.');
       return;
     }
-  }
 
-  editTask(event: Event)
+
+
+  }
+  addTask(event: Event, task: TaskComponent)
   {
+    event.preventDefault();
+    this.tasks.push(task);
 
+    const form = event.target as HTMLFormElement;
+    form.reset();
+    return;
   }
+
+
 }

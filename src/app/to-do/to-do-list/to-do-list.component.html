@@ -7,7 +7,7 @@
       [description]="task.description"
       [time]="task.time"
       (deleteTask)="onTaskDeleted($index)"
-      (taskEdited)="onTaskEdited($event, $index)"/>
+      (taskEdited)="onTaskEdited($event)"/>
   }
 </div>
 
@@ -16,29 +16,23 @@
   <!--/ Display a larger button if the list of tasks is empty /-->
   <div class="container empty-list text-center">
     <h2>No tasks to display! Add one using the button below.</h2>
-    <button class="btn btn-primary h1 text-center"
-            id="empty-add-btn"
-            data-bs-toggle="modal"
-            data-bs-target="#task-add-modal">
-      Add Task
-    </button>
   </div>
 }
-@else
-{
-  <button class="btn btn-primary" id="add-task-btn"
-          data-bs-toggle="modal" data-bs-target="#task-add-modal">Add Task</button>
-}
 
-<div class="modal fade" id="task-add-modal">
+<button class="btn btn-primary" id="add-task-btn"
+        data-bs-toggle="modal" data-bs-target="#task-modal"
+        (click)="this.mode = 'Add'">Add Task</button>
+
+
+<div class="modal fade" id="task-modal">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5">Add Task</h1>
+        <h1 class="modal-title fs-5">{{this.mode}} Task</h1>
         <button class="btn-close" type="button" data-bs-dismiss="modal"></button>
       </div>
       <div class="modal-body">
-        <form id="new-task-form" (ngSubmit)="addTask($event)">
+        <form id="new-task-form" (ngSubmit)="taskAction($event)">
           <div class="mb-3">
             <label class="form-label" for="task-title">Task Title</label>
             <input class="form-control" id="task-title"
@@ -62,9 +56,19 @@
         </button>
         <button class="btn btn-primary" type="submit"
                 form="new-task-form">
-          Add Task
+          Save Changes
         </button>
       </div>
     </div>
   </div>
 </div>
+
+<!--/
+
+ * Goal: Click on edit button and have the value be accurate for each item
+ * Currently, it only shows the first item
+ * Set modal initial display to none
+ * On emitting the event, set it to block
+
+ /-->
+
