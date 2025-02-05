@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
 import {TaskComponent} from '../to-do-task/task.component';
 import {FormsModule} from '@angular/forms';
+import {Modal} from 'bootstrap';
 @Component({
   selector: 'app-to-do',
   imports: [
@@ -15,10 +16,20 @@ import {FormsModule} from '@angular/forms';
 export class ToDoListComponent {
   tasks: TaskComponent[] = [];
   mode: string = '';
-  onTaskEdited(task: TaskComponent)
+  onTaskEdited()
   {
+    // TODO DISPLAY MODAL SOMEHOW
     this.mode = 'Edit';
-    document.getElementById('task-modal')!.removeAttribute('hide');
+    const modalBtn = document.createElement('button');
+    modalBtn.setAttribute('data-bs-toggle', 'modal');
+    modalBtn.setAttribute('data-bs-target', 'task-modal');
+    modalBtn.click();
+    modalBtn.addEventListener('click', () => {
+      console.log(modalBtn)})
+  }
+  editTask(task: TaskComponent)
+  {
+    this.tasks.splice(task.id, 1, task);
   }
   onTaskDeleted(index: number)
   {
@@ -26,7 +37,7 @@ export class ToDoListComponent {
   }
   taskAction(event: Event)
   {
-    const task = this.getTaskFromForm(event);
+    const task = this.getTaskFromForm(event) as TaskComponent;
 
     //* If the task was returned successfully, perform the specified action
     if(task)
@@ -35,7 +46,8 @@ export class ToDoListComponent {
         case 'Add':
           this.addTask(event, task);
           break;
-
+        case 'Edit':
+          this.editTask(task);
       }
     }
   }
@@ -44,37 +56,32 @@ export class ToDoListComponent {
   {
     const form = event.target as HTMLFormElement
 
-    let task = {};
+    let newTask = {};
     const title = (form.elements.namedItem('task-title') as HTMLInputElement).value;
     const description = (form.elements.namedItem('task-description') as HTMLInputElement).value;
     const time = (form.elements.namedItem('task-time') as HTMLInputElement).value;
 
     if(title)
     {
-      return {
+      newTask = {
         title: title,
         description: description,
         time: time
       } as TaskComponent
+      this.tasks.push(newTask as TaskComponent);
+      form.reset();
+      return newTask;
     }
     else
     {
       alert('Please enter a title for the task.');
       return;
     }
-
-
-
   }
+
   addTask(event: Event, task: TaskComponent)
   {
-    event.preventDefault();
-    this.tasks.push(task);
 
-    const form = event.target as HTMLFormElement;
-    form.reset();
-    return;
   }
-
 
 }

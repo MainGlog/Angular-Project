@@ -2,7 +2,7 @@ import {
   __commonJS,
   __spreadProps,
   __spreadValues
-} from "./chunk-3OV72XIM.js";
+} from "./chunk-CX3I3NQG.js";
 
 // node_modules/bootstrap/dist/js/bootstrap.bundle.min.js
 var require_bootstrap_bundle_min = __commonJS({
