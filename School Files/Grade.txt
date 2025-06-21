@@ -1,0 +1,16 @@
+55.5/60
+
+Categories
+
+Effort - 13/15
+
+Constraints Met - 12.5/15
+- (-2.5) Page reloads occur every time the page changes. SPAs should not require page reloads when navigating. Use routerLink="/" instead of href="/" in anchor tags.
+
+Effective Componentization - 12/12
+
+UI/UX - 7/7
+
+Bug-Free - 6/6
+
+Source Code Cleanliness - 5/5
